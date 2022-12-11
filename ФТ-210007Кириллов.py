@@ -1,6 +1,7 @@
 import random
 import logging
 
+
 def input_int(
     msg: str, 
     min: int = None, 
@@ -35,18 +36,23 @@ def input_int(
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, filename="logfile.log", filemode="a",
                             format="%(asctime)s %(levelname)s %(message)s")
-                            
+
+    #Берет на ввод у пользователя кол-во бочек        
     amount_barrels = input_int('Введите количество бочек: ', 1)
 
+    #Создание списка для бочек
     barrels = [i for i in range(1, amount_barrels + 1)]
 
+    #Перемешивание ячеек в созданном списке
     random.shuffle(barrels)
 
     while True:
+        #Выбирается последняя ячейка из списка и удаляется из него
         choice = barrels.pop()
         print("Выпал бочонок №", choice)
         logging.info("Выпал бочонок №" + str(choice))
         if len(barrels) == 0: break
 
+        #Пользователь нажимает Enter пока не закончатся бочки
         input("Нажмите enter чтобы вытянуть следующий бочонок >>>" )
         logging.info('Нажмите enter чтобы вытянуть следующий бочонок >>>')
